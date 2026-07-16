@@ -284,6 +284,29 @@
 .footer__inner { display: flex; justify-content: space-between; align-items: center; font-size: 0.82rem; color: var(--text-dim); font-family: var(--mono); }
 
 /* ============================ RESPONSIVE ============================ */
+/* ---- mobile hero: the 16:9 video crops to a portrait window ---- */
+@media (max-width: 860px) {
+  /* keep the subject (at 62% of the frame) inside the portrait crop */
+  .hero__video { object-position: 62% center; }
+
+  /* text sits in the bottom third over a solid fade — no face overlap */
+  .hero { align-items: flex-end; }
+  .hero .hero__content { padding-bottom: 88px; }
+  .hero__fade {
+    background: linear-gradient(
+      to bottom,
+      transparent 34%,
+      rgba(239, 237, 234, 0.82) 58%,
+      var(--bg) 96%
+    );
+  }
+  .hero__title { max-width: 100%; }
+  .hero__tag { max-width: 100%; }
+  .hero__scroll { display: none; }
+  /* with the 62% crop the subject lands at screen centre,
+     so the end-of-scrub logo goes to 50% (set in the layout block below) */
+}
+
 @media (max-width: 860px) {
   .nav__links {
     position: fixed;

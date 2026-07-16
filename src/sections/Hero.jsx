@@ -29,7 +29,15 @@ export default function Hero() {
   const raf = useRef(0)
 
   useEffect(() => {
-    headOk('./hero.mp4', (t) => t.startsWith('video')).then(setVideoSrc)
+    // phones get a lighter 540p encode; falls back to the full file
+    const small = window.innerWidth <= 860
+    const candidates = small ? ['./hero-mobile.mp4', './hero.mp4'] : ['./hero.mp4']
+    ;(async () => {
+      for (const url of candidates) {
+        const ok = await headOk(url, (t) => t.startsWith('video'))
+        if (ok) { setVideoSrc(ok); break }
+      }
+    })()
     headOk('./appium-logo.png', (t) => t.startsWith('image')).then((png) =>
       png ? setLogoSrc(png) : headOk('./appium-logo.svg', (t) => t.includes('svg')).then(setLogoSrc),
     )
