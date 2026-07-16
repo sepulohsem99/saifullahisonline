@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from 'react'
 import FiberHero from '../components/FiberHero'
 import { site } from '../config'
 
-/* Hero has two modes:
- *  1. No public/hero.mp4  → real-time WebGL fiber scene (FiberHero)
- *  2. public/hero.mp4 present (generated with Kling — see KLING-PROMPT.md)
- *     → reference-style SCROLL SCRUB: the section pins for ~3 screens and
- *     the video's currentTime follows scroll, so the face dissolves into
- *     strands and gathers into the ring as you scroll. If a crisp logo is
- *     dropped at public/appium-logo.png (or .svg), it cross-fades in over
- *     the ring at the end of the scrub.
+/* Hero has three modes:
+ *  1. No hero media in public/ → real-time WebGL fiber scene (FiberHero)
+ *  2. Desktop + public/hero.mp4 → scroll-scrubbed video (all-intra encode)
+ *  3. Mobile + public/frames/f000..jpg → scroll-scrubbed CANVAS image
+ *     sequence (Apple-style) — video seeking is too slow on phones.
+ * The scrub pins the section for ~3 screens; scroll drives the playhead.
  */
-const SCRUB_VHS = 3 // how many viewport-heights the scrub lasts
+const SCRUB_VHS = 3
+const FRAME_COUNT = 51 // public/frames/f000.jpg … f050.jpg (10fps × 5.1s)
+const FOCUS_X = 0.62 // subject sits at 62% of the 16:9 frame
 
 function headOk(url, accept) {
   return fetch(url, { method: 'HEAD' })
@@ -20,22 +20,32 @@ function headOk(url, accept) {
 }
 
 export default function Hero() {
-  const [videoSrc, setVideoSrc] = useState(null)
+  const [media, setMedia] = useState(null) // {type:'video',src} | {type:'frames'}
   const [logoSrc, setLogoSrc] = useState(null)
   const videoRef = useRef(null)
+  const canvasRef = useRef(null)
+  const framesRef = useRef([])
   const wrapRef = useRef(null)
   const contentRef = useRef(null)
   const logoRef = useRef(null)
   const raf = useRef(0)
 
   useEffect(() => {
-    // phones get a lighter 540p encode; falls back to the full file
     const small = window.innerWidth <= 860
-    const candidates = small ? ['./hero-mobile.mp4', './hero.mp4'] : ['./hero.mp4']
     ;(async () => {
+      if (small) {
+        // canvas frame-scrub: the only smooth option on mobile Safari
+        if (await headOk('./frames/f000.jpg', (t) => t.startsWith('image'))) {
+          setMedia({ type: 'frames' })
+          return
+        }
+      }
+      const candidates = small ? ['./hero-mobile.mp4', './hero.mp4'] : ['./hero.mp4']
       for (const url of candidates) {
-        const ok = await headOk(url, (t) => t.startsWith('video'))
-        if (ok) { setVideoSrc(ok); break }
+        if (await headOk(url, (t) => t.startsWith('video'))) {
+          setMedia({ type: 'video', src: url })
+          return
+        }
       }
     })()
     headOk('./appium-logo.png', (t) => t.startsWith('image')).then((png) =>
@@ -43,16 +53,63 @@ export default function Hero() {
     )
   }, [])
 
-  // scroll scrub — rAF loop (robust against scroll-event quirks / smooth scrolling)
+  // scroll scrub — rAF loop (robust against scroll-event quirks)
   useEffect(() => {
-    if (!videoSrc) return
-    const video = videoRef.current
+    if (!media) return
     const wrap = wrapRef.current
-    if (!video || !wrap) return
+    if (!wrap) return
+    const video = videoRef.current
+    const canvas = canvasRef.current
 
-    video.pause()
     let alive = true
-    let smoothP = 0 // eased progress — trails raw scroll for buttery scrubbing
+    let smoothP = 0
+    let lastFrame = -1
+
+    // ---- frames mode setup ----
+    let ctx = null
+    const imgs = framesRef.current
+    const sizeCanvas = () => {
+      if (!canvas) return
+      const dpr = Math.min(2, window.devicePixelRatio || 1)
+      canvas.width = canvas.clientWidth * dpr
+      canvas.height = canvas.clientHeight * dpr
+      lastFrame = -1 // force redraw
+    }
+    const drawFrame = (idx) => {
+      if (!ctx) return
+      // nearest loaded frame (downloads may still be in flight)
+      let img = null
+      for (let d = 0; d < FRAME_COUNT; d++) {
+        const lo = imgs[idx - d]
+        const hi = imgs[idx + d]
+        if (lo && lo.complete && lo.naturalWidth) { img = lo; break }
+        if (hi && hi.complete && hi.naturalWidth) { img = hi; break }
+      }
+      if (!img) return
+      const cw = canvas.width
+      const ch = canvas.height
+      // cover-crop keeping the subject (FOCUS_X) in view
+      const scale = Math.max(cw / img.naturalWidth, ch / img.naturalHeight)
+      const sw = cw / scale
+      const sh = ch / scale
+      const sx = Math.min(Math.max(FOCUS_X * img.naturalWidth - sw / 2, 0), img.naturalWidth - sw)
+      const sy = (img.naturalHeight - sh) / 2
+      ctx.drawImage(img, sx, sy, sw, sh, 0, 0, cw, ch)
+    }
+    if (media.type === 'frames' && canvas) {
+      ctx = canvas.getContext('2d')
+      sizeCanvas()
+      window.addEventListener('resize', sizeCanvas)
+      if (imgs.length === 0) {
+        for (let i = 0; i < FRAME_COUNT; i++) {
+          const img = new Image()
+          img.src = `./frames/f${String(i).padStart(3, '0')}.jpg`
+          if (i === 0) img.onload = () => { lastFrame = -1 } // first paint
+          imgs.push(img)
+        }
+      }
+    }
+    if (media.type === 'video' && video) video.pause()
 
     const tick = () => {
       if (!alive) return
@@ -62,11 +119,14 @@ export default function Hero() {
       if (Math.abs(rawP - smoothP) < 0.0005) smoothP = rawP
       const p = smoothP
 
-      if (video.duration && video.readyState >= 1) {
+      if (media.type === 'video' && video && video.duration && video.readyState >= 1) {
         const target = p * Math.max(0, video.duration - 0.05)
-        // skip micro-seeks: each currentTime write forces a decode
-        if (Math.abs(video.currentTime - target) > 0.015) {
-          video.currentTime = target
+        if (Math.abs(video.currentTime - target) > 0.015) video.currentTime = target
+      } else if (media.type === 'frames') {
+        const idx = Math.round(p * (FRAME_COUNT - 1))
+        if (idx !== lastFrame) {
+          lastFrame = idx
+          drawFrame(idx)
         }
       }
       // headline fades out over the first third of the scrub
@@ -87,17 +147,20 @@ export default function Hero() {
     return () => {
       alive = false
       cancelAnimationFrame(raf.current)
+      window.removeEventListener('resize', sizeCanvas)
     }
-  }, [videoSrc])
+  }, [media])
 
   const inner = (
-    <section className={`hero${videoSrc ? ' hero--sticky' : ''}`} id="top">
+    <section className={`hero${media ? ' hero--sticky' : ''}`} id="top">
       <div className="hero__canvas">
-        {videoSrc ? (
+        {media?.type === 'frames' ? (
+          <canvas ref={canvasRef} className="hero__video" />
+        ) : media?.type === 'video' ? (
           <video
             ref={videoRef}
             className="hero__video"
-            src={videoSrc}
+            src={media.src}
             muted
             playsInline
             preload="auto"
@@ -109,7 +172,7 @@ export default function Hero() {
       </div>
       <div className="hero__fade" />
 
-      {videoSrc && logoSrc && (
+      {media && logoSrc && (
         <img ref={logoRef} className="hero__logo-end" src={logoSrc} alt="Appium" />
       )}
 
@@ -147,7 +210,7 @@ export default function Hero() {
     <div
       className="hero-scrub"
       ref={wrapRef}
-      style={{ height: videoSrc ? `${(SCRUB_VHS + 1) * 100}vh` : 'auto' }}
+      style={{ height: media ? `${(SCRUB_VHS + 1) * 100}vh` : 'auto' }}
     >
       {inner}
     </div>
