@@ -32,7 +32,14 @@ em.r{font-style:normal;background:linear-gradient(96deg,var(--red) 6%,var(--red-
   -webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* animated background layer: glow + nodes */
-#bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+/* background: drawn Middle-East architecture under a solid red tint, faint mashrabiya at the edges */
+#bgwrap{position:fixed;inset:0;z-index:0;pointer-events:none;background:#120C0D}
+#bgwrap > *{position:absolute;inset:0;width:100%;height:100%}
+#archScene{filter:blur(1.5px)}
+#tint{background:rgba(52,8,11,.86)}
+#mashLayer{opacity:.5;-webkit-mask-image:radial-gradient(ellipse 60% 62% at 50% 45%,transparent 40%,#000 100%);
+  mask-image:radial-gradient(ellipse 60% 62% at 50% 45%,transparent 40%,#000 100%)}
+@media (max-width:860px){#mashLayer{opacity:.3}}
 .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.12;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 /* glass surface — medium strength */
@@ -393,7 +400,11 @@ h1.big{font-family:'Space Grotesk';font-weight:700;font-size:64px;line-height:1;
 </head>
 <body>
 
-<canvas id="bg" aria-hidden="true"></canvas><div class="grain" aria-hidden="true"></div>
+<div id="bgwrap" aria-hidden="true">
+  <svg id="archScene" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMax slice"></svg>
+  <div id="tint"></div>
+  <svg id="mashLayer"></svg>
+</div><div class="grain" aria-hidden="true"></div>
 
 <!-- ================= TOP BAR ================= -->
 <header class="topbar">
@@ -701,42 +712,54 @@ h1.big{font-family:'Space Grotesk';font-weight:700;font-size:64px;line-height:1;
   <a href="#contact" data-sec="contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6 8.5 7 8.5-7"/></svg>Contact</a>
 </nav>
 
+<script>
+/* ---- background: drawn Middle-East architecture + mashrabiya ---- */
+(function(){
+const NS='http://www.w3.org/2000/svg',el=(t,a,p)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p&&p.appendChild(e);return e};
+const S=document.getElementById('archScene');
+const d=el('defs',{},S);
+const sky=el('linearGradient',{id:'sky',x1:0,y1:0,x2:0,y2:1},d);el('stop',{offset:0,'stop-color':'#d9d9d9'},sky);el('stop',{offset:1,'stop-color':'#8a8a8a'},sky);
+const dm=el('linearGradient',{id:'dm',x1:0,y1:0,x2:1,y2:0},d);el('stop',{offset:0,'stop-color':'#9a9a9a'},dm);el('stop',{offset:.45,'stop-color':'#d0d0d0'},dm);el('stop',{offset:1,'stop-color':'#5e5e5e'},dm);
+el('rect',{width:1600,height:1000,fill:'url(#sky)'},S);
+// back building: drum + big dome + small domes
+el('rect',{x:520,y:420,width:560,height:300,fill:'#7a7a7a'},S);
+el('rect',{x:640,y:330,width:320,height:110,fill:'#858585'},S);
+const dome=(cx,base,w,h,f)=>{el('path',{d:`M${cx-w/2},${base} C${cx-w/2},${base-h*.85} ${cx-w*.14},${base-h*.97} ${cx},${base-h} C${cx+w*.14},${base-h*.97} ${cx+w/2},${base-h*.85} ${cx+w/2},${base} Z`,fill:f},S);
+  el('rect',{x:cx-2,y:base-h-34,width:4,height:34,fill:'#666'},S);el('circle',{cx,cy:base-h-38,r:6,fill:'#666'},S)};
+dome(800,335,330,230,'url(#dm)');dome(600,425,150,100,'url(#dm)');dome(1000,425,150,100,'url(#dm)');
+// drum windows
+for(let x=660;x<950;x+=36) el('path',{d:`M${x},425 V380 C${x},366 ${x+8},358 ${x+12},355 C${x+16},358 ${x+24},366 ${x+24},380 V425 Z`,fill:'#5a5a5a'},S);
+// minarets
+const minaret=(x,h)=>{el('rect',{x:x-18,y:720-h,width:36,height:h,fill:'#8e8e8e'},S);el('rect',{x:x-26,y:720-h*.62,width:52,height:10,fill:'#6e6e6e'},S);
+  el('rect',{x:x-26,y:720-h*.35,width:52,height:10,fill:'#6e6e6e'},S);el('path',{d:`M${x-18},${720-h} L${x},${720-h-70} L${x+18},${720-h} Z`,fill:'#7a7a7a'},S)};
+minaret(380,470);minaret(1220,470);
+// courtyard arcade (foreground): solid wall with pointed-arch openings
+let a='M0,560 H1600 V1000 H0 Z';const aw=150,gap=42;
+for(let x=gap/2-60;x<1600;x+=aw+gap){const y=600,b=1000,sp=740;
+  a+=` M${x},${b} V${sp} C${x},${sp-80} ${x+aw*.28},${y+14} ${x+aw/2},${y} C${x+aw*.72},${y+14} ${x+aw},${sp-80} ${x+aw},${sp} V${b} Z`;}
+el('path',{d:a,fill:'#3c3c3c','fill-rule':'evenodd'},S);
+el('rect',{x:0,y:548,width:1600,height:16,fill:'#2e2e2e'},S);
+// crenellation along the arcade top
+for(let x=0;x<1600;x+=32) el('path',{d:`M${x+4},548 V534 L${x+16},524 L${x+28},534 V548 Z`,fill:'#2e2e2e'},S);
+// floor seen through the arches
+el('rect',{x:0,y:930,width:1600,height:70,fill:'#555','fill-opacity':.6},S);
+
+// mashrabiya tile
+const M=document.getElementById('mashLayer');
+const star=(cx,cy,R,n=8,k=.7654)=>{let p='';for(let i=0;i<2*n;i++){const r=i%2?R*k:R,t=Math.PI*i/n-Math.PI/2;p+=(i?'L':'M')+(cx+r*Math.cos(t)).toFixed(2)+','+(cy+r*Math.sin(t)).toFixed(2)}return p+'Z'};
+const pd=el('defs',{},M),pat=el('pattern',{id:'mp',width:64,height:64,patternUnits:'userSpaceOnUse'},pd);
+const g=el('g',{fill:'none',stroke:'rgba(201,162,74,.34)','stroke-width':1.1},pat);
+el('path',{d:star(32,32,24)},g);el('path',{d:star(32,32,11)},g);
+el('path',{d:'M0,0 L10,10 M64,0 L54,10 M0,64 L10,54 M64,64 L54,54 M32,0 V8 M32,64 V56 M0,32 H8 M64,32 H56'},g);
+el('path',{d:star(0,0,9)+star(64,0,9)+star(0,64,9)+star(64,64,9)},g);
+el('rect',{width:'100%',height:'100%',fill:'url(#mp)'},M);
+
+})();
+</script>
 <script src="lib/gsap.min.js"></script>
 <script src="lib/ScrollTrigger.min.js"></script>
 <script src="lib/lenis.min.js"></script>
 <script>
-/* ---- background: red glow blobs + linked nodes ---- */
-(function(){
-  const c=document.getElementById('bg'),x=c.getContext('2d');
-  const reduceBg=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w,h,P=[],running=true,t0=performance.now(),scrollY0=0;
-  function fit(){const d=Math.min(devicePixelRatio||1,2);w=innerWidth;h=innerHeight;c.width=w*d;c.height=h*d;x.setTransform(d,0,0,d,0,0);
-    const n=Math.round(Math.min(70,Math.max(26,w*h/22000)));
-    while(P.length<n)P.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.018,vy:(Math.random()-.5)*.018});
-    P.length=n;}
-  const blobs=[[.18,.22,'229,28,33',.34],[.85,.35,'142,15,19',.42],[.55,.88,'255,90,80',.2],[.9,.9,'229,28,33',.16]];
-  function draw(t){
-    x.clearRect(0,0,w,h);
-    const sh=(window.scrollY||0)*.00008;           /* blobs drift a little with scroll */
-    blobs.forEach(([gx,gy,col,a],i)=>{
-      const cx=w*(gx+.1*Math.sin(t*.18+i*2.1)),cy=h*(gy+.08*Math.cos(t*.15+i)+ (i%2?-sh:sh));
-      const r=Math.max(w,h)*.42,g=x.createRadialGradient(cx,cy,0,cx,cy,r);
-      g.addColorStop(0,`rgba(${col},${a})`);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,w,h)});
-    const L=Math.min(150,w*.14);
-    P.forEach(p=>{p.x+=p.vx/60;p.y+=p.vy/60;if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1});
-    x.lineWidth=1;
-    for(let i=0;i<P.length;i++){const a=P[i];for(let j=i+1;j<P.length;j++){const b=P[j];
-      const dx=(a.x-b.x)*w,dy=(a.y-b.y)*h,d=dx*dx+dy*dy;
-      if(d<L*L){const o=(1-Math.sqrt(d)/L)*.28;x.strokeStyle=`rgba(255,74,78,${o})`;x.beginPath();x.moveTo(a.x*w,a.y*h);x.lineTo(b.x*w,b.y*h);x.stroke()}}}
-    x.fillStyle='rgba(255,190,190,.55)';
-    P.forEach(p=>{x.beginPath();x.arc(p.x*w,p.y*h,1.5,0,6.29);x.fill()});
-  }
-  function tick(now){ if(!running) return; draw((now-t0)/1000); requestAnimationFrame(tick); }
-  fit(); addEventListener('resize',()=>{fit(); if(reduceBg) draw(0);});
-  document.addEventListener('visibilitychange',()=>{ running=!document.hidden && !reduceBg; if(running) requestAnimationFrame(tick); });
-  if(reduceBg) draw(0); else requestAnimationFrame(tick);
-})();
-
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const rec = new URLSearchParams(location.search).has('rec');
 const steps = [...document.querySelectorAll('#steps .step')];
