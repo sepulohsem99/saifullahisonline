@@ -11,7 +11,7 @@
 <meta name="description" content="System Analyst and Business Analyst with 4+ years on government and enterprise systems — requirements, specs, UI design, UAT and test automation.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0B0B0C; --panel:#111113; --panel-2:#17171B;
@@ -560,6 +560,117 @@ h1.big{font-family:'Space Grotesk';font-weight:700;font-size:64px;line-height:1;
     </div>
   </div>
 </section>
+
+<!-- ================= WHO AM I (flip comic) ================= -->
+<style>
+#whoami{overflow-x:clip}
+.wt-wrap{display:grid;grid-template-columns:1fr minmax(0,500px);gap:56px;align-items:center}
+.wt-intro h2{font-family:'Space Grotesk';font-weight:700;font-size:38px;letter-spacing:-.03em;line-height:1.1;margin:0 0 14px}
+.wt-intro>p{font-size:15px;color:var(--dim);max-width:420px;margin:0}
+.wt-key{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;max-width:440px}
+.wt-key span{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#D6D6DB;padding:7px 11px;border-radius:999px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1)}
+.wt-key span b{color:var(--red-lt,#FF4A4E);font-weight:500}
+.wt-ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:20px}
+.wt-btn{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;cursor:pointer;color:#fff;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);transition:background .2s,border-color .2s,opacity .2s}
+.wt-btn:hover{background:var(--red,#E51C21);border-color:var(--red,#E51C21)}
+.wt-btn:disabled{opacity:.3;pointer-events:none}
+.wt-btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.wt-dots{display:flex;gap:7px}
+.wt-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:width .3s,background .3s}
+.wt-dots i.on{width:22px;border-radius:5px;background:var(--red,#E51C21)}
+.wt-book{position:relative;display:grid;perspective:2200px;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:pan-y;outline:none}
+.wt-page{grid-area:1/1;position:relative;transform-style:preserve-3d;transform-origin:left center;
+  transition:transform .9s cubic-bezier(.645,.045,.355,1),visibility 0s 0s}
+.wt-page.flipped{transform:rotateY(-180deg);visibility:hidden;transition:transform .9s cubic-bezier(.645,.045,.355,1),visibility 0s .9s}
+.wt-p,.wt-back{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4px 14px 14px 4px;overflow:hidden}
+.wt-p{position:relative;margin:0;height:100%;background:#141417;border:1px solid rgba(255,255,255,.1);box-shadow:0 22px 60px rgba(0,0,0,.5)}
+.wt-p::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:linear-gradient(90deg,rgba(0,0,0,.3),transparent 6%)}
+.wt-back{position:absolute;inset:0;transform:rotateY(180deg);background:
+  repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 10px,transparent 10px 20px),#1B1B20;border:1px solid rgba(255,255,255,.08)}
+.wt-page.moving{z-index:50 !important}
+.wt-art{position:relative;aspect-ratio:1/1;container-type:inline-size}
+.wt-art img{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.wt-b{position:absolute;display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:'Comic Neue','Comic Sans MS',cursive;font-weight:700;color:#141414;line-height:1.12;
+  font-size:5.3cqw;letter-spacing:-.01em;padding:0 2%}
+.wt-b b{color:#C4181C;font-weight:700}
+.wt-cap{display:flex;gap:12px;align-items:flex-start;padding:14px 16px 16px;color:#E9E9EC;border-top:3px solid var(--red,#E51C21)}
+.wt-n{flex:none;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.14em;
+  color:#fff;background:var(--red,#E51C21);border-radius:5px;padding:4px 7px;margin-top:1px}
+.wt-cap p{margin:0;font-size:14.5px;line-height:1.45;color:#C9C9CF}
+.wt-cap p strong{color:#fff;font-weight:600}
+.wt-hint{position:absolute;right:12px;bottom:calc(100% - 100cqw);z-index:60;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(229,28,33,.95);padding:6px 10px;border-radius:999px;
+  pointer-events:none;animation:wtNudge 1.6s ease-in-out infinite;transition:opacity .3s}
+.wt-hint.off{opacity:0}
+@keyframes wtNudge{0%,100%{transform:translateX(0)}50%{transform:translateX(-6px)}}
+@media (max-width:860px){
+  .wt-wrap{grid-template-columns:1fr;gap:24px}
+  .wt-intro h2{font-size:30px}
+  .wt-key{margin-top:18px}
+}
+@media (prefers-reduced-motion:reduce){.wt-page{transition:none}.wt-hint{animation:none}}
+</style>
+<section class="sec" id="whoami">
+  <div class="wrap wt-wrap">
+    <div class="wt-intro">
+      <div class="sec-k">Who am I?</div>
+      <h2>I'm the <em class="r">smart waiter.</em></h2>
+      <p>Clients say "make it user-friendly". That's their "delicious tom yum". My job is to turn it into an order the kitchen can actually cook. Flip through the story.</p>
+      <div class="wt-key">
+        <span><b>Waiter</b> = me (BA &amp; QA)</span><span><b>Customer</b> = client</span><span><b>Chef</b> = developer</span>
+        <span><b>Order ticket</b> = URS / SRS</span><span><b>Taste test</b> = UAT &amp; automation</span>
+      </div>
+    </div>
+    <div>
+      <div class="wt-book" id="wtBook" role="region" aria-label="Comic: the smart waiter. Tap or swipe to flip pages.">
+        <div class="wt-page"><figure class="wt-p"><div class="wt-art"><img src="assets/wt_p1.jpg" alt="Client asks the waiter for a delicious tom yum; the waiter looks puzzled">
+          <div class="wt-b" style="left:3%;top:2%;width:68%;height:19%"><span>I want a <b>DELICIOUS</b><br>tom yum!</span></div></div>
+          <figcaption class="wt-cap"><span class="wt-n">01</span><p><strong>"Delicious" can't be tested.</strong> Neither can "fast" or "user-friendly". So I don't nod. I ask.</p></figcaption></figure><div class="wt-back"></div></div>
+        <div class="wt-page"><figure class="wt-p"><div class="wt-art"><img src="assets/wt_p2.jpg" alt="Waiter asks questions and writes down the order">
+          <div class="wt-b" style="left:21%;top:1%;width:77%;height:17%"><span>Prawns or lobster? Any allergies? Spicy, 1 to 5?</span></div></div>
+          <figcaption class="wt-cap"><span class="wt-n">02</span><p><strong>"Prawns, no peanuts, level 3."</strong> Now it's measurable. That's requirement gathering.</p></figcaption></figure><div class="wt-back"></div></div>
+        <div class="wt-page"><figure class="wt-p"><div class="wt-art"><img src="assets/wt_p3.jpg" alt="Waiter hands a written order ticket to the smiling chef">
+          <div class="wt-b" style="left:9%;top:1%;width:82%;height:15%"><span>Prawns, no peanuts, level 3. Client signed it!</span></div></div>
+          <figcaption class="wt-cap"><span class="wt-n">03</span><p><strong>The chef gets a clear ticket, not a guess.</strong> That ticket is my URS / SRS for the developer.</p></figcaption></figure><div class="wt-back"></div></div>
+        <div class="wt-page"><figure class="wt-p"><div class="wt-art"><img src="assets/wt_p4.jpg" alt="Waiter serves the tom yum and the client gives a thumbs up">
+          <div class="wt-b" style="left:38%;top:1%;width:60%;height:17%"><span>I tasted it before it left the kitchen.</span></div></div>
+          <figcaption class="wt-cap"><span class="wt-n">04</span><p><strong>"Exactly what I wanted!"</strong> Because I test it first (UAT and automated checks), the client never gets a surprise.</p></figcaption></figure><div class="wt-back"></div></div>
+      </div>
+      <div class="wt-ctrl">
+        <button class="wt-btn" data-wt="prev" aria-label="Previous page" disabled><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <div class="wt-dots"><i class="on"></i><i></i><i></i><i></i></div>
+        <button class="wt-btn" data-wt="next" aria-label="Next page"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(()=>{const book=document.getElementById('wtBook');if(!book)return;
+const pages=[...book.querySelectorAll('.wt-page')],N=pages.length;
+const dots=[...document.querySelectorAll('#whoami .wt-dots i')];
+const prev=document.querySelector('#whoami [data-wt=prev]'),next=document.querySelector('#whoami [data-wt=next]');
+const next1=next.innerHTML,again='<svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>';
+let cur=0;
+function paint(){pages.forEach((p,i)=>{p.classList.toggle('flipped',i<cur);p.style.zIndex=i<cur?i+1:2*N-i;});
+  dots.forEach((d,i)=>d.classList.toggle('on',i===cur));prev.disabled=cur===0;
+  const last=cur===N-1;next.innerHTML=last?again:next1;next.setAttribute('aria-label',last?'Read again':'Next page');}
+function move(p){p.classList.add('moving');clearTimeout(p._t);p._t=setTimeout(()=>p.classList.remove('moving'),950);}
+function go(d){
+  if(d>0){if(cur===N-1){cur=0;pages.forEach(move);paint();return;}move(pages[cur]);cur++;}
+  else{if(cur===0)return;cur--;move(pages[cur]);}
+  paint();}
+book.addEventListener('click',e=>{const r=book.getBoundingClientRect();go(e.clientX-r.left<r.width*.3?-1:1);});
+prev.addEventListener('click',()=>go(-1));next.addEventListener('click',()=>go(1));
+let sx=null,sy=0;book.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+book.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=null;
+  if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){e.preventDefault();go(dx<0?1:-1);}});
+book.tabIndex=0;book.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);});
+paint();})();
+</script>
 
 <!-- ================= PROCESS ================= -->
 <section class="sec" id="process">
