@@ -72,6 +72,7 @@ em.r{font-style:normal;background:linear-gradient(96deg,var(--red) 6%,var(--red-
 .tnav a:hover{color:var(--ink);background:var(--panel-2)}
 .tnav a.active{color:var(--ink)}
 .tnav a.active::after{content:'';display:block;height:2px;margin-top:3px;border-radius:2px;background:var(--red)}
+@media (min-width:861px) and (max-width:1120px){.tnav{gap:0}.tnav a{padding:8px 8px;font-size:13px}}
 .tb-cv{margin-left:10px;padding:9px 15px !important;border:1px solid var(--line-2);color:var(--ink) !important;
   font-family:'Space Grotesk';font-weight:600}
 .tb-cv:hover{border-color:var(--red);background:transparent !important}
@@ -416,7 +417,9 @@ h1.big{font-family:'Space Grotesk';font-weight:700;font-size:64px;line-height:1;
     <a class="tb-l" href="#home"><div class="tb-mark">SM</div><div class="tb-name">Saifullah Muhamad</div></a>
     <nav class="tnav" id="tnav">
       <a href="#work" data-sec="work">Work</a>
+      <a href="#whoami" data-sec="whoami">Who am I</a>
       <a href="#process" data-sec="process">How I work</a>
+      <a href="#bugs" data-sec="bugs">Bug reports</a>
       <a href="#skills" data-sec="skills">Skills</a>
       <a href="#exp" data-sec="exp">Experience</a>
       <a href="#contact" data-sec="contact">Contact</a>
@@ -983,13 +986,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* active tab in top nav + bottom nav */
 const navLinks = [...document.querySelectorAll('#tnav a[data-sec], #bnav a[data-sec]')];
-const secs = ['home','work','process','skills','exp','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+const secs = ['home','work','whoami','process','bugs','skills','exp','contact'].map(id=>document.getElementById(id)).filter(Boolean);
 function syncNav(){
   const y = window.scrollY + window.innerHeight*0.35;
   let cur = secs[0].id;
   for (const s of secs) if (s.offsetTop <= y) cur = s.id;
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = 'contact';
-  const mob = (cur === 'process') ? 'work' : cur;
+  const mob = ['whoami','process','bugs'].includes(cur) ? 'work' : cur;
   navLinks.forEach(a=>{
     const target = a.closest('#bnav') ? mob : cur;
     a.classList.toggle('active', a.dataset.sec === target);
