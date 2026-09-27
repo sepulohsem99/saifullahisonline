@@ -702,6 +702,51 @@ paint();})();
   </div>
 </section>
 
+<!-- ================= BUG REPORTING ================= -->
+<style>
+.bg-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:30px}
+.bg-top h2{font-family:'Space Grotesk';font-weight:700;font-size:36px;letter-spacing:-.03em;line-height:1.12;margin:0 0 14px}
+.bg-top>div>p{font-size:15px;color:var(--dim);margin:0;max-width:460px}
+.bg-rules{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.bg-rules li{display:flex;gap:12px;font-size:14.5px;line-height:1.5;color:var(--dim)}
+.bg-rules li b{color:var(--ink);font-weight:600}
+.bg-rules li::before{content:'';flex:none;width:18px;height:18px;margin-top:2px;border-radius:5px;
+  background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center/12px no-repeat}
+.bg-shot{display:block;position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--line-2);
+  box-shadow:0 30px 80px rgba(0,0,0,.55),0 0 0 6px rgba(255,255,255,.03);transition:transform .3s ease,box-shadow .3s ease}
+.bg-shot:hover{transform:translateY(-3px);box-shadow:0 36px 90px rgba(0,0,0,.6),0 0 0 6px rgba(229,28,33,.15)}
+.bg-shot img{display:block;width:100%;height:auto}
+.bg-zoom{position:absolute;right:14px;bottom:14px;font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;
+  color:#fff;background:rgba(11,11,12,.85);border:1px solid rgba(255,255,255,.18);padding:7px 11px;border-radius:999px}
+.bg-foot{font-size:12.5px;color:var(--dim-2);margin-top:12px}
+@media (max-width:860px){
+  .bg-top{grid-template-columns:1fr;gap:22px;margin-bottom:22px}
+  .bg-top h2{font-size:29px}
+}
+</style>
+<section class="sec" id="bugs">
+  <div class="wrap">
+    <div class="bg-top">
+      <div>
+        <div class="sec-k">How I report bugs</div>
+        <h2>Bugs? This is how I report every one <em class="r">before it goes to production.</em></h2>
+        <p>Here is a sample ticket that follows my usual flow: found in UAT, fixed by the developer, retested by me, then cleared for release.</p>
+      </div>
+      <ul class="bg-rules">
+        <li><span><b>Clear title</b> that says where, what and when.</span></li>
+        <li><span><b>Exact steps</b> with the user, role and test data, so anyone can repeat it.</span></li>
+        <li><span><b>Expected vs actual</b>, linked to the requirement it breaks.</span></li>
+        <li><span><b>Proof and a hint</b>: screenshot, video, network log, and where I think it breaks.</span></li>
+      </ul>
+    </div>
+    <a class="bg-shot" href="assets/bug_ticket.jpg" target="_blank" rel="noopener">
+      <img src="assets/bug_ticket.jpg" width="1920" height="1938" loading="lazy" alt="Sample bug ticket BUG-214: steps to reproduce, expected vs actual result, note for developer, attachments, and the fix and retest activity">
+      <span class="bg-zoom">View full size ↗</span>
+    </a>
+    <p class="bg-foot">Sample ticket with made-up data, written the way I write real ones.</p>
+  </div>
+</section>
+
 <!-- ================= SKILLS ================= -->
 <section class="sec" id="skills">
   <div class="wrap">
