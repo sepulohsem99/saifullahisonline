@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23E51C21'/%3E%3Ctext x='16' y='21' font-family='Arial' font-weight='700' font-size='13' text-anchor='middle' fill='white'%3ESM%3C/text%3E%3C/svg%3E">
+<title>Design Gallery — Saifullah Muhamad</title>
+<meta name="description" content="UI screens Saifullah Muhamad designed for government and enterprise systems, organised by project.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>:root{--bg:#0B0B0C;--ink:#F3F2F0;--dim:#A3A3A9;--dim-2:#6E6E75;--line:#232327;--line-2:#303036;--red:#E51C21;--red-lt:#FF4A4E}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{min-height:100vh;color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 600px at 50% 38%,rgba(142,15,19,.55),transparent 70%),radial-gradient(1200px 500px at 50% -10%,rgba(52,8,11,.9),transparent),var(--bg)}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.top{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--line);background:rgba(11,11,12,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk';font-weight:600;font-size:15px}
+.brand i{width:26px;height:26px;border-radius:6px;background:var(--red);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:700}
+.top nav{display:flex;gap:8px}
+.tb{font-size:13.5px;padding:8px 14px;border-radius:8px;border:1px solid var(--line-2);color:var(--dim);transition:all .2s}
+.tb:hover{color:#fff;border-color:rgba(255,255,255,.3)}
+.tb.p{background:var(--red);border-color:var(--red);color:#fff}
+.sec-k{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-lt);display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sec-k::before{content:'';width:26px;height:1px;background:var(--red)}
+em.r{font-style:normal;background:linear-gradient(96deg,var(--red) 6%,var(--red-lt) 60%,#FF9092);-webkit-background-clip:text;background-clip:text;color:transparent}
+#gallery{padding:44px 0 20px}
+.pj{padding:40px 0 70px}
+.pj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pj-card{text-align:left;cursor:pointer;background:rgba(17,17,19,.72);border:1px solid var(--line-2);border-radius:12px;overflow:hidden;color:var(--ink);
+  transition:border-color .2s,transform .2s;backdrop-filter:blur(10px)}
+.pj-card:hover{border-color:rgba(229,28,33,.6);transform:translateY(-2px)}
+.pj-img{height:140px;overflow:hidden;background:#15151a}
+.pj-img img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.pj-t{display:flex;justify-content:space-between;align-items:baseline;gap:8px;padding:12px 14px 4px}
+.pj-t b{font-family:'Space Grotesk';font-weight:600;font-size:15.5px}
+.pj-t span{font:500 11px 'IBM Plex Mono',monospace;color:var(--dim-2);white-space:nowrap}
+.pj-card p{padding:0 14px 14px;font-size:13px;line-height:1.5;color:var(--dim)}
+.foot{border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px;color:var(--dim-2)}
+.foot .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){.wrap{padding:0 16px}.top .tb.cv{display:none}#gallery{padding-top:28px}}
+
+#gallery{overflow-x:clip}
+.gl-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:22px}
+.gl-head h1{font-family:'Space Grotesk';font-weight:700;font-size:36px;letter-spacing:-.03em;line-height:1.12;margin:0}
+.gl-head p{font-size:15px;color:var(--dim);max-width:400px;margin:0}
+.gl-chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 6px;margin-bottom:6px}
+.gl-chips::-webkit-scrollbar{display:none}
+.gl-chip{flex:none;font:500 12.5px 'IBM Plex Mono',monospace;color:var(--dim);background:rgba(255,255,255,.04);border:1px solid var(--line-2);
+  padding:8px 13px;border-radius:999px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.gl-chip b{font-weight:500;color:var(--dim-2);margin-left:6px}
+.gl-chip:hover{color:var(--ink);border-color:rgba(255,255,255,.25)}
+.gl-chip[aria-pressed=true]{color:#fff;background:rgba(229,28,33,.2);border-color:rgba(229,28,33,.6)}
+.gl-chip[aria-pressed=true] b{color:#FFB3B5}
+.gl-stage{position:relative;height:700px;perspective:1400px;cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.gl-stage.drag{cursor:grabbing}
+.gl-stage::before{content:'';position:absolute;left:50%;top:50%;width:520px;height:520px;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(229,28,33,.22),rgba(229,28,33,.04) 55%,transparent 70%);pointer-events:none}
+.gl-world{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.gl-tile{position:absolute;left:0;top:0;transform-style:preserve-3d;cursor:pointer;will-change:transform,opacity}
+.gl-tile .in{border-radius:8px;overflow:hidden;background:#15151a;border:1px solid rgba(255,255,255,.14);box-shadow:0 10px 30px rgba(0,0,0,.45);
+  transform:translate(-50%,-50%);transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.gl-tile img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none}
+.gl-tile:hover .in{transform:translate(-50%,-50%) scale(1.12);border-color:rgba(229,28,33,.8);box-shadow:0 14px 40px rgba(229,28,33,.35)}
+.gl-hint{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--dim-2);pointer-events:none}
+.gl-info{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;margin-top:6px;padding-top:16px;border-top:1px solid var(--line)}
+.gl-info h3{font-family:'Space Grotesk';font-weight:600;font-size:19px;margin:0;color:var(--ink)}
+.gl-info p{margin:4px 0 0;font-size:14px;color:var(--dim)}
+.gl-info .n{font:500 12px 'IBM Plex Mono',monospace;color:var(--dim-2)}
+/* lightbox */
+.gl-lb{position:fixed;inset:0;z-index:1000;background:rgba(8,8,10,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  display:none;flex-direction:column;align-items:center;justify-content:center;padding:56px 70px 70px}
+.gl-lb.on{display:flex}
+.gl-lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px;box-shadow:0 30px 90px rgba(0,0,0,.6);background:#fff}
+.gl-lb .cap{position:absolute;left:0;right:0;bottom:20px;text-align:center;font:500 12.5px 'IBM Plex Mono',monospace;color:#D4D4D8}
+.gl-lb .cap b{color:#fff;font-weight:500}
+.gl-lb button{position:absolute;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);
+  color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center}
+.gl-lb button:hover{background:var(--red);border-color:var(--red)}
+.gl-lb .x{top:14px;right:14px}.gl-lb .pv{left:14px;top:50%;margin-top:-23px}.gl-lb .nx{right:14px;top:50%;margin-top:-23px}
+@media (max-width:860px){
+  .gl-head{flex-direction:column;align-items:flex-start;gap:10px}
+  .gl-head h1{font-size:29px}
+  .gl-stage{height:440px;perspective:900px}
+  .gl-stage::before{width:320px;height:320px}
+  .gl-lb{padding:60px 10px 90px}
+  .gl-lb .pv,.gl-lb .nx{top:auto;bottom:14px;margin:0}
+  .gl-lb .pv{left:calc(50% - 60px)}.gl-lb .nx{right:calc(50% - 60px)}
+  .gl-lb .cap{bottom:72px}
+}
+</style>
+</head><body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/"><i>SM</i>Saifullah Muhamad</a>
+  <nav><a class="tb" href="/">← Portfolio</a><a class="tb p cv" href="assets/Saifullah_Muhamad_Resume_2026.pdf" download>Résumé ↓</a></nav>
+</div></header>
+<main>
+<section id="gallery">
+  <div class="wrap">
+    <div class="gl-head">
+      <div><div class="sec-k">Design gallery</div><h1>Screens I designed, <em class="r">project by project.</em></h1></div>
+      <p>Frames exported straight from my Figma files: web systems, mobile apps and dashboards. Drag the globe, pick a project, tap any screen to open it.</p>
+    </div>
+    <div class="gl-chips" id="glChips" role="toolbar" aria-label="Filter by project"></div>
+    <div class="gl-stage" id="glStage" aria-label="Rotating gallery of design screens">
+      <div class="gl-world" id="glWorld"></div>
+      <div class="gl-hint">Drag to spin · tap a screen</div>
+    </div>
+    <div class="gl-info"><div><h3 id="glTitle"></h3><p id="glDesc"></p></div><span class="n" id="glCount"></span></div>
+  </div>
+  <div class="gl-lb" id="glLb" role="dialog" aria-modal="true" aria-label="Screen preview">
+    <img id="glImg" alt="">
+    <div class="cap" id="glCap"></div>
+    <button class="x" aria-label="Close">✕</button><button class="pv" aria-label="Previous">‹</button><button class="nx" aria-label="Next">›</button>
+  </div>
+</section>
+
+<section class="pj">
+  <div class="wrap">
+    <div class="sec-k">Browse by project</div>
+    <div class="pj-grid" id="pjGrid"></div>
+  </div>
+</section>
+</main>
+<footer class="foot"><div class="wrap"><span>© Saifullah Muhamad · Frames exported from my Figma files.</span><a href="/#contact" style="color:var(--red-lt)">Get in touch →</a></div></footer>
+<script>
+(()=>{
+const P=window.__GP=[{"slug":"eperumahan","name":"e-Perumahan \u00b7 DBKL","desc":"Public housing app for Kuala Lumpur City Hall: officer mobile app for unit visits and census, plus a web dashboard.","items":[{"i":1,"kind":"mobile"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"desktop"},{"i":8,"kind":"mobile"},{"i":9,"kind":"desktop"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"mobile"}]},{"slug":"mbpg","name":"MBPG Online","desc":"Pasir Gudang City Council portal: hall and venue booking, payments and admin screens, web and mobile.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"mobile"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"mobile"},{"i":8,"kind":"desktop"},{"i":9,"kind":"desktop"},{"i":10,"kind":"mobile"},{"i":11,"kind":"desktop"},{"i":12,"kind":"desktop"}]},{"slug":"itcs","name":"ITCS \u00b7 Clamp & Tow","desc":"Integrated Clamp and Towing System: enforcement app with photo capture and GPS, plus depot and payment admin.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"mobile"},{"i":3,"kind":"desktop"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"desktop"},{"i":8,"kind":"desktop"},{"i":9,"kind":"desktop"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"desktop"}]},{"slug":"fgv","name":"FGV PMPS","desc":"Planting Materials Production System for FGV Agri Services: nursery stock, audits and reports.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"desktop"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"desktop"},{"i":8,"kind":"desktop"},{"i":9,"kind":"desktop"},{"i":10,"kind":"desktop"},{"i":11,"kind":"desktop"}]},{"slug":"emas","name":"eMAS 2.0 \u00b7 EPU","desc":"Management and analytics information system with executive dashboards and data entry modules.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"desktop"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"desktop"},{"i":8,"kind":"desktop"},{"i":9,"kind":"desktop"},{"i":10,"kind":"desktop"},{"i":11,"kind":"desktop"},{"i":12,"kind":"desktop"}]},{"slug":"risda","name":"RISDA e-Latihan","desc":"Training portal for RISDA smallholders and staff: sign-up, profiles and dashboards.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"desktop"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"desktop"}]},{"slug":"jpj","name":"JPJ Portal 2.0","desc":"Road Transport Department portal: landing page and homepage concepts.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"desktop"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"desktop"},{"i":8,"kind":"desktop"},{"i":9,"kind":"desktop"},{"i":10,"kind":"desktop"}]},{"slug":"egumis","name":"eGUMIS Mobile","desc":"Unclaimed-money mobile app: onboarding, claims and status tracking.","items":[{"i":1,"kind":"mobile"},{"i":2,"kind":"mobile"},{"i":3,"kind":"mobile"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"mobile"},{"i":8,"kind":"mobile"},{"i":9,"kind":"mobile"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"mobile"}]},{"slug":"visitkl","name":"VisitKL App","desc":"Kuala Lumpur tourism app: events, attractions and bookings.","items":[{"i":1,"kind":"mobile"},{"i":2,"kind":"mobile"},{"i":3,"kind":"mobile"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"mobile"},{"i":8,"kind":"mobile"},{"i":9,"kind":"mobile"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"mobile"}]},{"slug":"myjpj","name":"MyJPJ App","desc":"Road Transport Department mobile app: licences, summons, transactions and inbox.","items":[{"i":1,"kind":"mobile"},{"i":2,"kind":"mobile"},{"i":3,"kind":"mobile"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"mobile"},{"i":8,"kind":"mobile"},{"i":9,"kind":"mobile"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"mobile"}]},{"slug":"felda","name":"FELDA PPP","desc":"Planting-material app for FELDA: nursery reports, QR stock checks and notifications.","items":[{"i":1,"kind":"mobile"},{"i":2,"kind":"mobile"},{"i":3,"kind":"mobile"},{"i":4,"kind":"mobile"},{"i":5,"kind":"mobile"},{"i":6,"kind":"mobile"},{"i":7,"kind":"mobile"},{"i":8,"kind":"mobile"},{"i":9,"kind":"mobile"},{"i":10,"kind":"mobile"},{"i":11,"kind":"mobile"},{"i":12,"kind":"mobile"}]},{"slug":"cobkl","name":"COBKL \u00b7 DBKL","desc":"Kuala Lumpur City Hall body-corporate portal for residents and administrators.","items":[{"i":1,"kind":"desktop"},{"i":2,"kind":"desktop"},{"i":3,"kind":"desktop"},{"i":4,"kind":"desktop"},{"i":5,"kind":"desktop"},{"i":6,"kind":"desktop"},{"i":7,"kind":"desktop"},{"i":8,"kind":"desktop"}]}];
+const stage=document.getElementById('glStage'),world=document.getElementById('glWorld'),chips=document.getElementById('glChips');
+if(!stage)return;
+const total=P.reduce((a,p)=>a+p.items.length,0);
+const mk=(key,label,n)=>{const b=document.createElement('button');b.className='gl-chip';b.dataset.k=key;b.innerHTML=label+'<b>'+n+'</b>';b.setAttribute('aria-pressed','false');chips.appendChild(b);return b};
+mk('all','All projects',total); P.forEach(p=>mk(p.slug,p.name,p.items.length));
+let tiles=[],list=[],rx=-12,ry=0,vx=0,vy=0.08,drag=false,R=300;
+function size(){const m=innerWidth<860;R=m?150:265;return m}
+function build(key){
+  list=[];P.forEach(p=>{if(key==='all'||p.slug===key)p.items.forEach(it=>list.push({p,it}))});
+  world.innerHTML='';tiles=[];const m=size();
+  const target=m?54:76,slots=[];for(let k=0;slots.length<Math.max(target,list.length);k++)slots.push(k%list.length);
+  const n=slots.length,base=Math.min(m?120:190,Math.sqrt(4*Math.PI*R*R/n*0.8/0.66));
+  slots.forEach((li,i)=>{const o=list[li];
+    const y=1-(i+.5)/n*2,rad=Math.sqrt(1-y*y),th=i*2.399963;
+    const lat=Math.asin(y)*180/Math.PI,lon=th*180/Math.PI;
+    const mob=o.it.kind==='mobile',w=mob?base*.56:base,h=mob?base*1.15:base*.66;
+    const t=document.createElement('div');t.className='gl-tile';
+    t.style.transform=`rotateY(${lon}deg) rotateX(${lat}deg) translateZ(${R}px)`;
+    t.innerHTML=`<div class="in" style="width:${w}px;height:${h}px"><img loading="lazy" src="assets/g_${o.p.slug}_${String(o.it.i).padStart(2,'0')}_t.webp" alt="${o.p.name} screen ${o.it.i}"></div>`;
+    t._v=[rad*Math.sin(th),y,rad*Math.cos(th)];t._i=li;
+    t.addEventListener('click',()=>{if(!moved)openLb(li)});
+    world.appendChild(t);tiles.push(t);
+  });
+  const p=key==='all'?null:P.find(x=>x.slug===key);
+  document.getElementById('glTitle').textContent=p?p.name:'All projects';
+  document.getElementById('glDesc').textContent=p?p.desc:'Government and enterprise systems I worked on as analyst and UI/UX designer.';
+  document.getElementById('glCount').textContent=list.length+' screens';
+  chips.querySelectorAll('.gl-chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.k===key));
+}
+function frame(){
+  if(!drag){ry+=vy;rx+=vx;vx*=.95;if(Math.abs(vy)>0.08)vy*=.97;else vy=vy<0?-0.08:0.08;}
+  rx=Math.max(-60,Math.min(60,rx));
+  world.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+  const a=ry*Math.PI/180,b=rx*Math.PI/180,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);
+  for(const t of tiles){const [x,y,z]=t._v;const z1=-x*sa+z*ca;const z2=y*sb+z1*cb;
+    t.style.opacity=(0.18+0.82*Math.max(0,(z2+.35)/1.35)).toFixed(3);t.style.zIndex=Math.round(z2*100)+100;
+    t.style.pointerEvents=z2>-.1?'auto':'none';}
+  requestAnimationFrame(frame);
+}
+let px=0,py=0,moved=false,sx=0,sy=0;
+stage.addEventListener('pointerdown',e=>{drag=true;moved=false;px=sx=e.clientX;py=sy=e.clientY;stage.classList.add('drag');});
+addEventListener('pointermove',e=>{if(!drag)return;const dx=e.clientX-px,dy=e.clientY-py;px=e.clientX;py=e.clientY;
+  if(Math.abs(e.clientX-sx)+Math.abs(e.clientY-sy)>6)moved=true;ry+=dx*.3;rx-=dy*.3;vy=dx*.3;vx=-dy*.3;});
+addEventListener('pointerup',()=>{drag=false;stage.classList.remove('drag');});addEventListener('pointercancel',()=>{drag=false;stage.classList.remove('drag');});
+chips.addEventListener('click',e=>{const c=e.target.closest('.gl-chip');if(c)build(c.dataset.k)});
+let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>build(chips.querySelector('[aria-pressed=true]').dataset.k),200)});
+/* lightbox */
+const lb=document.getElementById('glLb'),img=document.getElementById('glImg'),cap=document.getElementById('glCap');let cur=0;
+function show(){const o=list[cur];img.src=`assets/g_${o.p.slug}_${String(o.it.i).padStart(2,'0')}.webp`;img.alt=o.p.name+' screen';
+  const inP=list.filter(x=>x.p===o.p),k=inP.indexOf(o)+1;cap.innerHTML=`<b>${o.p.name}</b> · ${k} / ${inP.length}`;}
+function openLb(i){cur=i;show();lb.classList.add('on');document.documentElement.style.overflow='hidden';}
+function closeLb(){lb.classList.remove('on');document.documentElement.style.overflow='';}
+lb.querySelector('.x').onclick=closeLb;lb.querySelector('.pv').onclick=()=>{cur=(cur-1+list.length)%list.length;show()};
+lb.querySelector('.nx').onclick=()=>{cur=(cur+1)%list.length;show()};
+lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});
+addEventListener('keydown',e=>{if(!lb.classList.contains('on'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowRight')lb.querySelector('.nx').click();if(e.key==='ArrowLeft')lb.querySelector('.pv').click();});
+let tx=null;lb.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+lb.addEventListener('touchend',e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)(d<0?lb.querySelector('.nx'):lb.querySelector('.pv')).click();tx=null;});
+build('all');requestAnimationFrame(frame);
+})();
+</script>
+
+<script>
+(()=>{const g=document.getElementById('pjGrid');if(!g)return;const P=window.__GP||[];
+P.forEach(p=>{const a=document.createElement('button');a.className='pj-card';
+ const n=p.items.length,c=String(p.items[0].i).padStart(2,'0');
+ a.innerHTML=`<div class="pj-img"><img loading="lazy" src="assets/g_${p.slug}_${c}_t.webp" alt=""></div><div class="pj-t"><b>${p.name}</b><span>${n} screens</span></div><p>${p.desc}</p>`;
+ a.onclick=()=>{const c=document.querySelector('#glChips [data-k="'+p.slug+'"]');if(c)c.click();document.getElementById('gallery').scrollIntoView({behavior:'smooth'});};
+ g.appendChild(a);});})();
+</script>
+</body></html>
