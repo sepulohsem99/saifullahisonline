@@ -420,9 +420,9 @@ h1.big{font-family:'Space Grotesk';font-weight:700;font-size:64px;line-height:1;
       <a href="#whoami" data-sec="whoami">Who am I</a>
       <a href="#process" data-sec="process">How I work</a>
       <a href="#bugs" data-sec="bugs">Bug reports</a>
-      <a href="gallery.html" data-sec="gallery">Gallery</a>
       <a href="#skills" data-sec="skills">Skills</a>
       <a href="#exp" data-sec="exp">Experience</a>
+      <a href="gallery.html" data-sec="gallery">Gallery</a>
       <a href="#contact" data-sec="contact">Contact</a>
       <a class="tb-cv" href="assets/Saifullah_Muhamad_Resume_2026.pdf" download>Résumé ↓</a>
     </nav>
@@ -751,47 +751,6 @@ paint();})();
   </div>
 </section>
 
-<!-- ================= GALLERY TEASER ================= -->
-<style>
-.gt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;border:1px solid var(--line-2);border-radius:18px;
-  padding:34px;background:rgba(17,17,19,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden;position:relative}
-.gt h2{font-family:'Space Grotesk';font-weight:700;font-size:32px;letter-spacing:-.03em;line-height:1.12;margin:0 0 12px}
-.gt p{font-size:15px;color:var(--dim);margin:0 0 20px;max-width:440px}
-.gt-stats{display:flex;gap:22px;margin-bottom:22px}
-.gt-stats div{font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim-2)}
-.gt-stats b{display:block;font-family:'Space Grotesk';font-size:26px;letter-spacing:-.02em;color:var(--ink);text-transform:none}
-.gt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;background:linear-gradient(94deg,var(--red),#C4181C);color:#fff;
-  font-weight:600;font-size:14px;box-shadow:0 6px 26px rgba(229,28,33,.3);transition:box-shadow .2s,transform .2s}
-.gt-btn:hover{transform:translateY(-1px);box-shadow:0 10px 34px rgba(229,28,33,.5)}
-.gt-fan{position:relative;height:280px;perspective:900px}
-.gt-fan img{position:absolute;top:50%;left:50%;width:46%;border-radius:8px;border:1px solid rgba(255,255,255,.14);box-shadow:0 16px 40px rgba(0,0,0,.5);
-  transition:transform .5s cubic-bezier(.2,.8,.2,1)}
-.gt-fan img:nth-child(1){transform:translate(-120%,-50%) rotate(-12deg)}
-.gt-fan img:nth-child(2){transform:translate(-85%,-58%) rotate(-5deg)}
-.gt-fan img:nth-child(3){transform:translate(-50%,-62%) rotate(0);z-index:3}
-.gt-fan img:nth-child(4){transform:translate(-15%,-58%) rotate(5deg);z-index:2}
-.gt-fan img:nth-child(5){transform:translate(20%,-50%) rotate(12deg);z-index:1}
-.gt:hover .gt-fan img:nth-child(1){transform:translate(-135%,-48%) rotate(-16deg)}
-.gt:hover .gt-fan img:nth-child(5){transform:translate(35%,-48%) rotate(16deg)}
-@media (max-width:860px){.gt{grid-template-columns:1fr;padding:24px;gap:10px}.gt h2{font-size:27px}.gt-fan{height:190px;order:-1}}
-</style>
-<section class="sec" id="gallery">
-  <div class="wrap">
-    <a class="gt" href="gallery.html" aria-label="Open the design gallery">
-      <div>
-        <div class="sec-k">Design gallery</div>
-        <h2>Screens I designed, <em class="r">project by project.</em></h2>
-        <p>Web systems, mobile apps and dashboards, exported frame by frame from my Figma files and shown on an interactive 3D globe.</p>
-        <div class="gt-stats"><div><b>12</b>projects</div><div><b>132</b>screens</div><div><b>Web + mobile</b>platforms</div></div>
-        <span class="gt-btn">Open the gallery →</span>
-      </div>
-      <div class="gt-fan" aria-hidden="true">
-        <img src="assets/g_fgv_04_t.webp" alt="" loading="lazy"><img src="assets/g_emas_01_t.webp" alt="" loading="lazy"><img src="assets/g_mbpg_09_t.webp" alt="" loading="lazy"><img src="assets/g_eperumahan_03_t.webp" alt="" loading="lazy"><img src="assets/g_jpj_02_t.webp" alt="" loading="lazy">
-      </div>
-    </a>
-  </div>
-</section>
-
 <!-- ================= SKILLS ================= -->
 <section class="sec" id="skills">
   <div class="wrap">
@@ -881,6 +840,60 @@ paint();})();
     </div>
   </div>
 </section>
+<!-- ================= GALLERY TEASER ================= -->
+<style>
+.gt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center;border:1px solid var(--line-2);border-radius:18px;
+  padding:34px;background:rgba(17,17,19,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);overflow:hidden;position:relative}
+.gt h2{font-family:'Space Grotesk';font-weight:700;font-size:32px;letter-spacing:-.03em;line-height:1.12;margin:0 0 12px}
+.gt p{font-size:15px;color:var(--dim);margin:0 0 20px;max-width:440px}
+.gt-stats{display:flex;gap:22px;margin-bottom:22px}
+.gt-stats div{font:500 11px 'IBM Plex Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--dim-2)}
+.gt-stats b{display:block;font-family:'Space Grotesk';font-size:26px;letter-spacing:-.02em;color:var(--ink);text-transform:none}
+.gt-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:10px;background:linear-gradient(94deg,var(--red),#C4181C);color:#fff;
+  font-weight:600;font-size:14px;box-shadow:0 6px 26px rgba(229,28,33,.3);transition:box-shadow .2s,transform .2s}
+.gt-btn:hover{transform:translateY(-1px);box-shadow:0 10px 34px rgba(229,28,33,.5)}
+@media (max-width:860px){.gt{grid-template-columns:1fr;padding:24px;gap:10px}.gt h2{font-size:27px}}
+.gt-globe{position:relative;height:400px;perspective:1100px}
+.gt-globe::before{content:'';position:absolute;left:50%;top:50%;width:330px;height:330px;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(229,28,33,.28),rgba(229,28,33,.05) 55%,transparent 70%)}
+.gt-world{position:absolute;left:50%;top:50%;transform-style:preserve-3d}
+.gt-world div{position:absolute;left:0;top:0;transform-style:preserve-3d}
+.gt-world img{display:block;max-width:none;transform:translate(-50%,-50%);border-radius:5px;border:1px solid rgba(255,255,255,.14);box-shadow:0 6px 18px rgba(0,0,0,.45);object-fit:cover;object-position:top;background:#15151a}
+@media (max-width:860px){.gt-globe{height:300px;order:-1;margin:-6px 0 4px}.gt-globe::before{width:240px;height:240px}}
+</style>
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <a class="gt" href="gallery.html" aria-label="Open the design gallery">
+      <div>
+        <div class="sec-k">Design gallery</div>
+        <h2>Screens I designed, <em class="r">project by project.</em></h2>
+        <p>Web systems, mobile apps and dashboards, exported frame by frame from my Figma files and shown on an interactive 3D globe.</p>
+        <div class="gt-stats"><div><b>12</b>projects</div><div><b>132</b>screens</div><div><b>Web + mobile</b>platforms</div></div>
+        <span class="gt-btn">Open the gallery →</span>
+      </div>
+      <div class="gt-globe" id="gtGlobe" aria-hidden="true"><div class="gt-world" id="gtWorld"></div></div>
+    </a>
+  </div>
+</section>
+<script>
+(()=>{const w=document.getElementById('gtWorld');if(!w)return;const L=[["eperumahan",1,1],["eperumahan",2,0],["eperumahan",3,0],["eperumahan",4,1],["eperumahan",5,1],["eperumahan",6,1],["eperumahan",7,0],["eperumahan",8,1],["eperumahan",9,0],["eperumahan",10,1],["eperumahan",11,1],["eperumahan",12,1],["mbpg",1,0],["mbpg",2,0],["mbpg",3,0],["mbpg",4,1],["mbpg",5,0],["mbpg",6,0],["mbpg",7,1],["mbpg",8,0],["mbpg",9,0],["mbpg",10,1],["mbpg",11,0],["mbpg",12,0],["itcs",1,0],["itcs",2,1],["itcs",3,0],["itcs",4,1],["itcs",5,1],["itcs",6,1],["itcs",7,0],["itcs",8,0],["itcs",9,0],["itcs",10,1],["itcs",11,1],["itcs",12,0],["fgv",1,0],["fgv",2,0],["fgv",3,0],["fgv",4,0],["fgv",5,0],["fgv",6,0],["fgv",7,0],["fgv",8,0],["fgv",9,0],["fgv",10,0],["fgv",11,0],["emas",1,0],["emas",2,0],["emas",3,0],["emas",4,0],["emas",5,0],["emas",6,0],["emas",7,0],["emas",8,0],["emas",9,0],["emas",10,0],["emas",11,0],["emas",12,0],["risda",1,0],["risda",2,0],["risda",3,0],["risda",4,0],["risda",5,0],["risda",6,0],["risda",7,0],["jpj",1,0],["jpj",2,0],["jpj",3,0],["jpj",4,0],["jpj",5,0],["jpj",6,0],["jpj",7,0],["jpj",8,0],["jpj",9,0],["jpj",10,0],["egumis",1,1],["egumis",2,1],["egumis",3,1],["egumis",4,1],["egumis",5,1],["egumis",6,1],["egumis",7,1],["egumis",8,1],["egumis",9,1],["egumis",10,1],["egumis",11,1],["egumis",12,1],["visitkl",1,1],["visitkl",2,1],["visitkl",3,1],["visitkl",4,1],["visitkl",5,1],["visitkl",6,1],["visitkl",7,1],["visitkl",8,1],["visitkl",9,1],["visitkl",10,1],["visitkl",11,1],["visitkl",12,1],["myjpj",1,1],["myjpj",2,1],["myjpj",3,1],["myjpj",4,1],["myjpj",5,1],["myjpj",6,1],["myjpj",7,1],["myjpj",8,1],["myjpj",9,1],["myjpj",10,1],["myjpj",11,1],["myjpj",12,1],["felda",1,1],["felda",2,1],["felda",3,1],["felda",4,1],["felda",5,1],["felda",6,1],["felda",7,1],["felda",8,1],["felda",9,1],["felda",10,1],["felda",11,1],["felda",12,1],["cobkl",1,0],["cobkl",2,0],["cobkl",3,0],["cobkl",4,0],["cobkl",5,0],["cobkl",6,0],["cobkl",7,0],["cobkl",8,0]];
+let tiles=[],ry=0,rx=-14;
+function build(){w.innerHTML='';tiles=[];const m=innerWidth<860,R=m?120:165,n=Math.min(L.length,m?60:84);
+ const base=Math.sqrt(4*Math.PI*R*R/n*0.85/0.66);
+ for(let i=0;i<n;i++){const o=L[Math.floor(i*L.length/n)],y=1-(i+.5)/n*2,rad=Math.sqrt(1-y*y),th=i*2.399963;
+  const d=document.createElement('div'),mob=o[2],wd=mob?base*.56:base,h=mob?base*1.15:base*.66;
+  d.style.transform=`rotateY(${th*180/Math.PI}deg) rotateX(${Math.asin(y)*180/Math.PI}deg) translateZ(${R}px)`;
+  d.innerHTML=`<img alt="" data-src="assets/g_${o[0]}_${String(o[1]).padStart(2,'0')}_t.webp" style="width:${wd}px;height:${h}px">`;
+  d._v=[rad*Math.sin(th),y,rad*Math.cos(th)];w.appendChild(d);tiles.push(d);}}
+let vis=false,loaded=false;new IntersectionObserver(e=>{vis=e[0].isIntersecting;if(vis&&!loaded){loaded=true;w.querySelectorAll('img[data-src]').forEach(i=>i.src=i.dataset.src)}},{rootMargin:'400px'}).observe(w.parentNode);
+function f(){if(vis){ry+=.12;w.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;
+ const a=ry*Math.PI/180,b=rx*Math.PI/180,ca=Math.cos(a),sa=Math.sin(a),cb=Math.cos(b),sb=Math.sin(b);
+ for(const t of tiles){const[x,y,z]=t._v;const z2=y*sb+(-x*sa+z*ca)*cb;t.style.opacity=(0.15+0.85*Math.max(0,(z2+.35)/1.35)).toFixed(2);t.style.zIndex=Math.round(z2*100)+100;}}
+ requestAnimationFrame(f);}
+build();requestAnimationFrame(f);let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{build();if(loaded)w.querySelectorAll('img[data-src]').forEach(i=>i.src=i.dataset.src)},200)});})();
+</script>
+
+
 </main>
 
 <!-- ================= CONTACT ================= -->
@@ -1028,13 +1041,13 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 
 /* active tab in top nav + bottom nav */
 const navLinks = [...document.querySelectorAll('#tnav a[data-sec], #bnav a[data-sec]')];
-const secs = ['home','work','whoami','process','bugs','gallery','skills','exp','contact'].map(id=>document.getElementById(id)).filter(Boolean);
+const secs = ['home','work','whoami','process','bugs','skills','exp','gallery','contact'].map(id=>document.getElementById(id)).filter(Boolean);
 function syncNav(){
   const y = window.scrollY + window.innerHeight*0.35;
   let cur = secs[0].id;
   for (const s of secs) if (s.offsetTop <= y) cur = s.id;
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = 'contact';
-  const mob = ['whoami','process','bugs','gallery'].includes(cur) ? 'work' : cur;
+  const mob = ['whoami','process','bugs'].includes(cur) ? 'work' : (cur==='gallery' ? 'exp' : cur);
   navLinks.forEach(a=>{
     const target = a.closest('#bnav') ? mob : cur;
     a.classList.toggle('active', a.dataset.sec === target);
